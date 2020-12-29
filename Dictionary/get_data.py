@@ -15,6 +15,7 @@ print('What word would you like to search for? ')
 
 while word == '':
     word = input()
+    print(word)
     break
 
 # TODO: uppercase input
