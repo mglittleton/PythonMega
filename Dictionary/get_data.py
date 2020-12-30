@@ -22,18 +22,23 @@ while running:
     while word == '':
         word = input().lower()
         if word not in data:
-            close = get_close_matches(word, words)
+            close = get_close_matches(word, words, 4, 0.5)
             if not close:
                 close = ["<error>"]
             print("That word does not exist.")
-            print("Did you mean {}.".format(close[0]))
-            affirm = input("(Y)es or (N)o - ")
-            if affirm == 'n' or affirm == "N":
+            print("Did you mean: ")
+
+            for i in range(0, len(close)):
+                print('{0}. {1}'.format(i + 1, close[i]))
+            print("X. NONE of the above")
+            close_choice = input('Please type the number of the closest match: ')
+
+            if close_choice == 'x' or close_choice == "X":
                 print('----------------------------------------')
                 print('Please try entering the word again.')
                 word = ''
                 continue
-            word = close[0]
+            word = close[int(close_choice) - 1]
 
         counter = 0
         print('----------------------------------------')
